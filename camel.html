@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>camel package &mdash; Camel 00.00.01 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="camel.agents package" href="camel.agents.html" />
+    <link rel="prev" title="camel" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Camel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">camel</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">camel package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html">camel.agents package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html">camel.prompts package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.configs">camel.configs module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.configs.ChatGPTConfig"><code class="docutils literal notranslate"><span class="pre">ChatGPTConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.generators">camel.generators module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.generators.AISocietyTaskPromptGenerator"><code class="docutils literal notranslate"><span class="pre">AISocietyTaskPromptGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.generators.CodeTaskPromptGenerator"><code class="docutils literal notranslate"><span class="pre">CodeTaskPromptGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.generators.RoleNameGenerator"><code class="docutils literal notranslate"><span class="pre">RoleNameGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.generators.SingleTxtGenerator"><code class="docutils literal notranslate"><span class="pre">SingleTxtGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.generators.SystemMessageGenerator"><code class="docutils literal notranslate"><span class="pre">SystemMessageGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.human">camel.human module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.human.Human"><code class="docutils literal notranslate"><span class="pre">Human</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.messages">camel.messages module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.AssistantChatMessage"><code class="docutils literal notranslate"><span class="pre">AssistantChatMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.AssistantSystemMessage"><code class="docutils literal notranslate"><span class="pre">AssistantSystemMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.BaseMessage"><code class="docutils literal notranslate"><span class="pre">BaseMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.ChatMessage"><code class="docutils literal notranslate"><span class="pre">ChatMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.SystemMessage"><code class="docutils literal notranslate"><span class="pre">SystemMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.UserChatMessage"><code class="docutils literal notranslate"><span class="pre">UserChatMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.messages.UserSystemMessage"><code class="docutils literal notranslate"><span class="pre">UserSystemMessage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.typing">camel.typing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.typing.ModelType"><code class="docutils literal notranslate"><span class="pre">ModelType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.typing.RoleType"><code class="docutils literal notranslate"><span class="pre">RoleType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.typing.TaskType"><code class="docutils literal notranslate"><span class="pre">TaskType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel.utils">camel.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.count_tokens_openai_chat_models"><code class="docutils literal notranslate"><span class="pre">count_tokens_openai_chat_models()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.get_first_int"><code class="docutils literal notranslate"><span class="pre">get_first_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.get_model_token_limit"><code class="docutils literal notranslate"><span class="pre">get_model_token_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.get_prompt_template_key_words"><code class="docutils literal notranslate"><span class="pre">get_prompt_template_key_words()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.num_tokens_from_messages"><code class="docutils literal notranslate"><span class="pre">num_tokens_from_messages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.openai_api_key_required"><code class="docutils literal notranslate"><span class="pre">openai_api_key_required()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camel.utils.print_text_animated"><code class="docutils literal notranslate"><span class="pre">print_text_animated()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-camel">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Camel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">camel</a></li>
+      <li class="breadcrumb-item active">camel package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/camel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="camel-package">
+<h1>camel package<a class="headerlink" href="#camel-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="camel.agents.html">camel.agents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camel.agents.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camel.agents.html#module-camel.agents.chat_agent">camel.agents.chat_agent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent"><code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent.get_info"><code class="docutils literal notranslate"><span class="pre">ChatAgent.get_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent.init_messages"><code class="docutils literal notranslate"><span class="pre">ChatAgent.init_messages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent.reset"><code class="docutils literal notranslate"><span class="pre">ChatAgent.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent.step"><code class="docutils literal notranslate"><span class="pre">ChatAgent.step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.chat_agent.ChatAgent.update_messages"><code class="docutils literal notranslate"><span class="pre">ChatAgent.update_messages()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.agents.html#module-camel.agents.role_playing">camel.agents.role_playing module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.role_playing.RolePlaying"><code class="docutils literal notranslate"><span class="pre">RolePlaying</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.role_playing.RolePlaying.init_chat"><code class="docutils literal notranslate"><span class="pre">RolePlaying.init_chat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.role_playing.RolePlaying.process_messages"><code class="docutils literal notranslate"><span class="pre">RolePlaying.process_messages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.role_playing.RolePlaying.step"><code class="docutils literal notranslate"><span class="pre">RolePlaying.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.agents.html#module-camel.agents.task_agent">camel.agents.task_agent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskPlannerAgent"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskPlannerAgent.task_planner_prompt"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent.task_planner_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskPlannerAgent.step"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent.DEFAULT_WORD_LIMIT"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.DEFAULT_WORD_LIMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent.task_specify_prompt"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.task_specify_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#id0"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.DEFAULT_WORD_LIMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent.step"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.agents.html#module-camel.agents">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent"><code class="docutils literal notranslate"><span class="pre">ChatAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent.get_info"><code class="docutils literal notranslate"><span class="pre">ChatAgent.get_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent.init_messages"><code class="docutils literal notranslate"><span class="pre">ChatAgent.init_messages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent.reset"><code class="docutils literal notranslate"><span class="pre">ChatAgent.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent.step"><code class="docutils literal notranslate"><span class="pre">ChatAgent.step()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.ChatAgent.update_messages"><code class="docutils literal notranslate"><span class="pre">ChatAgent.update_messages()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.CriticAgent"><code class="docutils literal notranslate"><span class="pre">CriticAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.CriticAgent.flatten_options"><code class="docutils literal notranslate"><span class="pre">CriticAgent.flatten_options()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.CriticAgent.get_option"><code class="docutils literal notranslate"><span class="pre">CriticAgent.get_option()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.CriticAgent.parse_critic"><code class="docutils literal notranslate"><span class="pre">CriticAgent.parse_critic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.CriticAgent.step"><code class="docutils literal notranslate"><span class="pre">CriticAgent.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.RolePlaying"><code class="docutils literal notranslate"><span class="pre">RolePlaying</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.RolePlaying.init_chat"><code class="docutils literal notranslate"><span class="pre">RolePlaying.init_chat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.RolePlaying.process_messages"><code class="docutils literal notranslate"><span class="pre">RolePlaying.process_messages()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.RolePlaying.step"><code class="docutils literal notranslate"><span class="pre">RolePlaying.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.TaskPlannerAgent"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.TaskPlannerAgent.task_planner_prompt"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent.task_planner_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.TaskPlannerAgent.step"><code class="docutils literal notranslate"><span class="pre">TaskPlannerAgent.step()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.agents.html#camel.agents.TaskSpecifyAgent"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.TaskSpecifyAgent.DEFAULT_WORD_LIMIT"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.DEFAULT_WORD_LIMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.TaskSpecifyAgent.task_specify_prompt"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.task_specify_prompt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#id9"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.DEFAULT_WORD_LIMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.agents.html#camel.agents.TaskSpecifyAgent.step"><code class="docutils literal notranslate"><span class="pre">TaskSpecifyAgent.step()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camel.prompts.html">camel.prompts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.ai_society">camel.prompts.ai_society module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.GENERATE_ASSISTANTS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_ASSISTANTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.GENERATE_USERS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_USERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id0"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.ai_society.AISocietyPromptTemplateDict.CRITIC_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.CRITIC_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id1"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_ASSISTANTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id2"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id3"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_USERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id4"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id5"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.base">camel.prompts.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.base.TextPrompt"><code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.base.TextPrompt.key_words"><code class="docutils literal notranslate"><span class="pre">TextPrompt.key_words</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.base.TextPrompt.format"><code class="docutils literal notranslate"><span class="pre">TextPrompt.format()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id6"><code class="docutils literal notranslate"><span class="pre">TextPrompt.key_words</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.base.TextPromptDict"><code class="docutils literal notranslate"><span class="pre">TextPromptDict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.code">camel.prompts.code module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.GENERATE_LANGUAGES"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_LANGUAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.GENERATE_DOMAINS"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_DOMAINS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.code.CodePromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id7"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id8"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_DOMAINS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id9"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_LANGUAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id10"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id11"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id12"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.misalignment">camel.prompts.misalignment module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict.DAN_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.DAN_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.misalignment.MisalignmentPromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id13"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id14"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.DAN_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id15"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id16"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id17"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.prompt_templates">camel.prompts.prompt_templates module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.prompt_templates.PromptTemplateGenerator"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.prompt_templates.PromptTemplateGenerator.get_generate_tasks_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_generate_tasks_prompt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.prompt_templates.PromptTemplateGenerator.get_prompt_from_key"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_prompt_from_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.prompt_templates.PromptTemplateGenerator.get_system_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_system_prompt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.prompt_templates.PromptTemplateGenerator.get_task_specify_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_task_specify_prompt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.task_prompt_template">camel.prompts.task_prompt_template module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.task_prompt_template.TaskPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">TaskPromptTemplateDict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts.translation">camel.prompts.translation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.translation.TranslationPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.translation.TranslationPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id18"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="camel.prompts.html#module-camel.prompts">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.GENERATE_ASSISTANTS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_ASSISTANTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.GENERATE_USERS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_USERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id19"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.AISocietyPromptTemplateDict.CRITIC_PROMPT"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.CRITIC_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id20"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_ASSISTANTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id21"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id22"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.GENERATE_USERS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id23"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id24"><code class="docutils literal notranslate"><span class="pre">AISocietyPromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.GENERATE_LANGUAGES"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_LANGUAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.GENERATE_DOMAINS"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_DOMAINS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.CodePromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id25"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id26"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_DOMAINS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id27"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_LANGUAGES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id28"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id29"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id30"><code class="docutils literal notranslate"><span class="pre">CodePromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.EvaluationPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">EvaluationPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.EvaluationPromptTemplateDict.GENERATE_QUESTIONS"><code class="docutils literal notranslate"><span class="pre">EvaluationPromptTemplateDict.GENERATE_QUESTIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id31"><code class="docutils literal notranslate"><span class="pre">EvaluationPromptTemplateDict.GENERATE_QUESTIONS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict.DAN_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.DAN_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict.GENERATE_TASKS"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.MisalignmentPromptTemplateDict.USER_PROMPT"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.USER_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id32"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id33"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.DAN_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id34"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.GENERATE_TASKS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id35"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.TASK_SPECIFY_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id36"><code class="docutils literal notranslate"><span class="pre">MisalignmentPromptTemplateDict.USER_PROMPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.PromptTemplateGenerator"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.PromptTemplateGenerator.get_generate_tasks_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_generate_tasks_prompt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.PromptTemplateGenerator.get_prompt_from_key"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_prompt_from_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.PromptTemplateGenerator.get_system_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_system_prompt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.PromptTemplateGenerator.get_task_specify_prompt"><code class="docutils literal notranslate"><span class="pre">PromptTemplateGenerator.get_task_specify_prompt()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.SolutionExtractionPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">SolutionExtractionPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.SolutionExtractionPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">SolutionExtractionPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id37"><code class="docutils literal notranslate"><span class="pre">SolutionExtractionPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.TaskPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">TaskPromptTemplateDict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.TextPrompt"><code class="docutils literal notranslate"><span class="pre">TextPrompt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.TextPrompt.key_words"><code class="docutils literal notranslate"><span class="pre">TextPrompt.key_words</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.TextPrompt.format"><code class="docutils literal notranslate"><span class="pre">TextPrompt.format()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id38"><code class="docutils literal notranslate"><span class="pre">TextPrompt.key_words</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.TextPromptDict"><code class="docutils literal notranslate"><span class="pre">TextPromptDict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="camel.prompts.html#camel.prompts.TranslationPromptTemplateDict"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#camel.prompts.TranslationPromptTemplateDict.ASSISTANT_PROMPT"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="camel.prompts.html#id39"><code class="docutils literal notranslate"><span class="pre">TranslationPromptTemplateDict.ASSISTANT_PROMPT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-camel.configs">
+<span id="camel-configs-module"></span><h2>camel.configs module<a class="headerlink" href="#module-camel.configs" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.configs.</span></span><span class="sig-name descname"><span class="pre">ChatGPTConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_p:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.Sequence[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">presence_penalty:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_penalty:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logit_bias:</span> <span class="pre">~typing.Dict</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/configs.html#ChatGPTConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.configs.ChatGPTConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defines the parameters for generating chat completions using the
+OpenAI API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temperature</strong> (<em>float</em><em>, </em><em>optional</em>) – Sampling temperature to use, between
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">0</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">2</span></code>. Higher values make the output more random,
+while lower values make it more focused and deterministic.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">0.2</span></code>)</p></li>
+<li><p><strong>top_p</strong> (<em>float</em><em>, </em><em>optional</em>) – An alternative to sampling with temperature,
+called nucleus sampling, where the model considers the results of
+the tokens with top_p probability mass. So <code class="xref py py-obj docutils literal notranslate"><span class="pre">0.1</span></code> means only
+the tokens comprising the top 10% probability mass are considered.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">1.0</span></code>)</p></li>
+<li><p><strong>n</strong> (<em>int</em><em>, </em><em>optional</em>) – How many chat completion choices to generate for
+each input message. ()default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">1</span></code>)</p></li>
+<li><p><strong>stream</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, partial message deltas will be sent
+as data-only server-sent events as they become available.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>stop</strong> (<em>str</em><em> or </em><em>list</em><em>, </em><em>optional</em>) – Up to <code class="xref py py-obj docutils literal notranslate"><span class="pre">4</span></code> sequences where the API
+will stop generating further tokens. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>max_tokens</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of tokens to generate
+in the chat completion. The total length of input tokens and
+generated tokens is limited by the model’s context length.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>presence_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Number between <code class="xref py py-obj docutils literal notranslate"><span class="pre">-2.0</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">2.0</span></code>. Positive values penalize new tokens based on whether
+they appear in the text so far, increasing the model’s likelihood
+to talk about new topics. See more information about frequency and
+presence penalties. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">0.0</span></code>)</p></li>
+<li><p><strong>frequency_penalty</strong> (<em>float</em><em>, </em><em>optional</em>) – Number between <code class="xref py py-obj docutils literal notranslate"><span class="pre">-2.0</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">2.0</span></code>. Positive values penalize new tokens based on their
+existing frequency in the text so far, decreasing the model’s
+likelihood to repeat the same line verbatim. See more information
+about frequency and presence penalties. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">0.0</span></code>)</p></li>
+<li><p><strong>logit_bias</strong> (<em>dict</em><em>, </em><em>optional</em>) – Modify the likelihood of specified tokens
+appearing in the completion. Accepts a json object that maps tokens
+(specified by their token ID in the tokenizer) to an associated
+bias value from <code class="xref py py-obj docutils literal notranslate"><span class="pre">-100</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">100</span></code>. Mathematically, the bias
+is added to the logits generated by the model prior to sampling.
+The exact effect will vary per model, but values between:obj:` -1`
+and <code class="xref py py-obj docutils literal notranslate"><span class="pre">1</span></code> should decrease or increase likelihood of selection;
+values like <code class="xref py py-obj docutils literal notranslate"><span class="pre">-100</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">100</span></code> should result in a ban or
+exclusive selection of the relevant token. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">{}</span></code>)</p></li>
+<li><p><strong>user</strong> (<em>str</em><em>, </em><em>optional</em>) – A unique identifier representing your end-user,
+which can help OpenAI to monitor and detect abuse.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.frequency_penalty">
+<span class="sig-name descname"><span class="pre">frequency_penalty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.frequency_penalty" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.logit_bias">
+<span class="sig-name descname"><span class="pre">logit_bias</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.logit_bias" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.max_tokens">
+<span class="sig-name descname"><span class="pre">max_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.max_tokens" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.n" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.presence_penalty">
+<span class="sig-name descname"><span class="pre">presence_penalty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.presence_penalty" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.stream">
+<span class="sig-name descname"><span class="pre">stream</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.stream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.temperature">
+<span class="sig-name descname"><span class="pre">temperature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.temperature" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.top_p">
+<span class="sig-name descname"><span class="pre">top_p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.top_p" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.configs.ChatGPTConfig.user">
+<span class="sig-name descname"><span class="pre">user</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.configs.ChatGPTConfig.user" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.generators">
+<span id="camel-generators-module"></span><h2>camel.generators module<a class="headerlink" href="#module-camel.generators" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.generators.AISocietyTaskPromptGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.generators.</span></span><span class="sig-name descname"><span class="pre">AISocietyTaskPromptGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/generators.html#AISocietyTaskPromptGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.AISocietyTaskPromptGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.AISocietyTaskPromptGenerator.from_role_files">
+<span class="sig-name descname"><span class="pre">from_role_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assistant_role_names_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/ai_society/assistant_roles.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_names_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/ai_society/user_roles.txt'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#AISocietyTaskPromptGenerator.from_role_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.AISocietyTaskPromptGenerator.from_role_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.AISocietyTaskPromptGenerator.from_role_generator">
+<span class="sig-name descname"><span class="pre">from_role_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#AISocietyTaskPromptGenerator.from_role_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.AISocietyTaskPromptGenerator.from_role_generator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.generators.CodeTaskPromptGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.generators.</span></span><span class="sig-name descname"><span class="pre">CodeTaskPromptGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/generators.html#CodeTaskPromptGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.CodeTaskPromptGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.CodeTaskPromptGenerator.from_role_files">
+<span class="sig-name descname"><span class="pre">from_role_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">languages_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/code/languages.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domains_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/code/domains.txt'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#CodeTaskPromptGenerator.from_role_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.CodeTaskPromptGenerator.from_role_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.CodeTaskPromptGenerator.from_role_generator">
+<span class="sig-name descname"><span class="pre">from_role_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#CodeTaskPromptGenerator.from_role_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.CodeTaskPromptGenerator.from_role_generator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.generators.RoleNameGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.generators.</span></span><span class="sig-name descname"><span class="pre">RoleNameGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assistant_role_names_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/ai_society/assistant_roles.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_names_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'data/ai_society/user_roles.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assistant_role_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/generators.html#RoleNameGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.RoleNameGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.RoleNameGenerator.from_role_files">
+<span class="sig-name descname"><span class="pre">from_role_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#RoleNameGenerator.from_role_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.RoleNameGenerator.from_role_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.generators.SingleTxtGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.generators.</span></span><span class="sig-name descname"><span class="pre">SingleTxtGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text_file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/generators.html#SingleTxtGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SingleTxtGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.SingleTxtGenerator.from_role_files">
+<span class="sig-name descname"><span class="pre">from_role_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#SingleTxtGenerator.from_role_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SingleTxtGenerator.from_role_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.generators.SystemMessageGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.generators.</span></span><span class="sig-name descname"><span class="pre">SystemMessageGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.TaskType" title="camel.typing.TaskType"><span class="pre">TaskType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TaskType.AI_SOCIETY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sys_prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sys_msg_meta_dict_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/generators.html#SystemMessageGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SystemMessageGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>System message generator for agents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task_type</strong> (<a class="reference internal" href="#camel.typing.TaskType" title="camel.typing.TaskType"><em>TaskType</em></a><em>, </em><em>optional</em>) – The task type.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">TaskType.AI_SOCIETY</span></code>)</p></li>
+<li><p><strong>sys_prompts</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a><em>, </em><em>str</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – The prompts of
+the system messages for each role type. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>sys_msg_meta_dict_keys</strong> (<em>Optional</em><em>[</em><em>Set</em><em>[</em><em>str</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – The set of keys
+of the meta dictionary used to fill the prompts.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.SystemMessageGenerator.from_dict">
+<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">meta_dict:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">str],</span> <span class="pre">role_tuple:</span> <span class="pre">~typing.Tuple[str,</span> <span class="pre">~camel.typing.RoleType]</span> <span class="pre">=</span> <span class="pre">('',</span> <span class="pre">&lt;RoleType.DEFAULT:</span> <span class="pre">'default'&gt;)</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.messages.SystemMessage" title="camel.messages.SystemMessage"><span class="pre">SystemMessage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#camel.messages.AssistantSystemMessage" title="camel.messages.AssistantSystemMessage"><span class="pre">AssistantSystemMessage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#camel.messages.UserSystemMessage" title="camel.messages.UserSystemMessage"><span class="pre">UserSystemMessage</span></a></span></span><a class="reference internal" href="_modules/camel/generators.html#SystemMessageGenerator.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SystemMessageGenerator.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a system message from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meta_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The dictionary containing the
+information to generate the system message.</p></li>
+<li><p><strong>role_tuple</strong> (<em>Tuple</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a><em>]</em><em>, </em><em>optional</em>) – The tuple containing
+the role name and role type. (default: (“”, RoleType.DEFAULT))</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generated system message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SystemMessageType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.SystemMessageGenerator.from_dicts">
+<span class="sig-name descname"><span class="pre">from_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_dicts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_tuples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.messages.SystemMessage" title="camel.messages.SystemMessage"><span class="pre">SystemMessage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#camel.messages.AssistantSystemMessage" title="camel.messages.AssistantSystemMessage"><span class="pre">AssistantSystemMessage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#camel.messages.UserSystemMessage" title="camel.messages.UserSystemMessage"><span class="pre">UserSystemMessage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/generators.html#SystemMessageGenerator.from_dicts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SystemMessageGenerator.from_dicts" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a list of system messages from a list of dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meta_dicts</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – A list of dictionaries
+containing the information to generate the system messages.</p></li>
+<li><p><strong>role_tuples</strong> (<em>List</em><em>[</em><em>Tuple</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a><em>]</em><em>]</em>) – A list of tuples
+containing the role name and role type for each system message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of generated system messages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[SystemMessageType]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the number of meta_dicts and role_tuples are
+    different.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.generators.SystemMessageGenerator.validate_meta_dict_keys">
+<span class="sig-name descname"><span class="pre">validate_meta_dict_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/generators.html#SystemMessageGenerator.validate_meta_dict_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.generators.SystemMessageGenerator.validate_meta_dict_keys" title="Permalink to this definition"></a></dt>
+<dd><p>Validates the keys of the meta_dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>meta_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The dictionary to validate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.human">
+<span id="camel-human-module"></span><h2>camel.human module<a class="headerlink" href="#module-camel.human" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.human.Human">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.human.</span></span><span class="sig-name descname"><span class="pre">Human</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Kill</span> <span class="pre">Switch</span> <span class="pre">Engineer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menu_color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'\x1b[35m'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/human.html#Human"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.human.Human" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing a human user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the human user.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;Kill</span> <span class="pre">Switch</span> <span class="pre">Engineer&quot;</span></code>).</p></li>
+<li><p><strong>menu_color</strong> (<em>Any</em>) – The color of the menu options displayed to the user.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Fore.MAGENTA</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.human.Human.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#camel.human.Human.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the human user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.human.Human.menu_color">
+<span class="sig-name descname"><span class="pre">menu_color</span></span><a class="headerlink" href="#camel.human.Human.menu_color" title="Permalink to this definition"></a></dt>
+<dd><p>The color of the menu options displayed to the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.human.Human.input_button">
+<span class="sig-name descname"><span class="pre">input_button</span></span><a class="headerlink" href="#camel.human.Human.input_button" title="Permalink to this definition"></a></dt>
+<dd><p>The text displayed for the input button.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.human.Human.kill_button">
+<span class="sig-name descname"><span class="pre">kill_button</span></span><a class="headerlink" href="#camel.human.Human.kill_button" title="Permalink to this definition"></a></dt>
+<dd><p>The text displayed for the kill button.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.human.Human.options_dict">
+<span class="sig-name descname"><span class="pre">options_dict</span></span><a class="headerlink" href="#camel.human.Human.options_dict" title="Permalink to this definition"></a></dt>
+<dd><p>A dictionary containing the options
+displayed to the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.human.Human.display_options">
+<span class="sig-name descname"><span class="pre">display_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><span class="pre">ChatMessage</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/human.html#Human.display_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.human.Human.display_options" title="Permalink to this definition"></a></dt>
+<dd><p>Displays the options to the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>messages</strong> (<em>List</em><em>[</em><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><em>ChatMessage</em></a><em>]</em>) – A list of <cite>ChatMessage</cite> objects.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.human.Human.get_input">
+<span class="sig-name descname"><span class="pre">get_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/camel/human.html#Human.get_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.human.Human.get_input" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the input from the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The user’s input.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.human.Human.parse_input">
+<span class="sig-name descname"><span class="pre">parse_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">human_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_chat_message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><span class="pre">ChatMessage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><span class="pre">ChatMessage</span></a></span></span><a class="reference internal" href="_modules/camel/human.html#Human.parse_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.human.Human.parse_input" title="Permalink to this definition"></a></dt>
+<dd><p>Parses the user’s input and returns a <cite>ChatMessage</cite> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>human_input</strong> (<em>str</em>) – The user’s input.</p></li>
+<li><p><strong>meta_chat_message</strong> (<a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><em>ChatMessage</em></a>) – A <cite>ChatMessage</cite> object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>ChatMessage</cite> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage">ChatMessage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.human.Human.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><span class="pre">ChatMessage</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><span class="pre">ChatMessage</span></a></span></span><a class="reference internal" href="_modules/camel/human.html#Human.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.human.Human.step" title="Permalink to this definition"></a></dt>
+<dd><p>Performs one step of the conversation by displaying options to the
+user, getting their input, and parsing their choice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>messages</strong> (<em>List</em><em>[</em><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><em>ChatMessage</em></a><em>]</em>) – A list of ChatMessage objects.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <cite>ChatMessage</cite> object representing the user’s choice.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage">ChatMessage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.messages">
+<span id="camel-messages-module"></span><h2>camel.messages module<a class="headerlink" href="#module-camel.messages" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">AssistantChatMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RoleType.ASSISTANT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'assistant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#AssistantChatMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.AssistantChatMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatMessage</span></code></a></p>
+<p>Class for chat messages from the assistant role used in CAMEL chat
+system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the assistant role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, always
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.ASSISTANT</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;assistant&quot;</span></code>)</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.AssistantChatMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.AssistantChatMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'assistant'</span></em><a class="headerlink" href="#camel.messages.AssistantChatMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.AssistantChatMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantChatMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'assistant'</span></em><a class="headerlink" href="#camel.messages.AssistantChatMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">AssistantSystemMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RoleType.ASSISTANT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'system'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#AssistantSystemMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.AssistantSystemMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.SystemMessage" title="camel.messages.SystemMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemMessage</span></code></a></p>
+<p>Class for system messages from the assistant used in the CAMEL chat
+system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the assistant role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, always
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.ASSISTANT</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code>)</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.AssistantSystemMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.AssistantSystemMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'system'</span></em><a class="headerlink" href="#camel.messages.AssistantSystemMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.AssistantSystemMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.AssistantSystemMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'assistant'</span></em><a class="headerlink" href="#camel.messages.AssistantSystemMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">BaseMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for message objects used in CAMEL chat system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the user or assistant role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, either
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.ASSISTANT</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.USER</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system, either
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;user&quot;</span></code>, or <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;assistant&quot;</span></code>.</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.BaseMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.BaseMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.BaseMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.BaseMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><a class="headerlink" href="#camel.messages.BaseMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_assistant_chat_message">
+<span class="sig-name descname"><span class="pre">to_assistant_chat_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.messages.AssistantChatMessage" title="camel.messages.AssistantChatMessage"><span class="pre">AssistantChatMessage</span></a></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_assistant_chat_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_assistant_chat_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <a class="reference internal" href="#camel.messages.AssistantChatMessage" title="camel.messages.AssistantChatMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssistantChatMessage</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The converted <a class="reference internal" href="#camel.messages.AssistantChatMessage" title="camel.messages.AssistantChatMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssistantChatMessage</span></code></a></dt><dd><p>object.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.messages.AssistantChatMessage" title="camel.messages.AssistantChatMessage">AssistantChatMessage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The converted dictionary.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_openai_assistant_message">
+<span class="sig-name descname"><span class="pre">to_openai_assistant_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_openai_assistant_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_openai_assistant_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIAssistantMessage</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The converted <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIAssistantMessage</span></code></dt><dd><p>object.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>OpenAIAssistantMessage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_openai_chat_message">
+<span class="sig-name descname"><span class="pre">to_openai_chat_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_openai_chat_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_openai_chat_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIChatMessage</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>role</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The role of the message in OpenAI chat
+system, either <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;user&quot;</span></code>, or <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;assistant&quot;</span></code>.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIChatMessage</span></code> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>OpenAIChatMessage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_openai_message">
+<span class="sig-name descname"><span class="pre">to_openai_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_openai_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_openai_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIMessage</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>role</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The role of the message in OpenAI chat
+system, either <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;user&quot;</span></code>, or
+obj:<cite>”assistant”</cite>. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIMessage</span></code> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>OpenAIMessage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_openai_system_message">
+<span class="sig-name descname"><span class="pre">to_openai_system_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_openai_system_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_openai_system_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAISystemMessage</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The converted <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAISystemMessage</span></code></dt><dd><p>object.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>OpenAISystemMessage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_openai_user_message">
+<span class="sig-name descname"><span class="pre">to_openai_user_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_openai_user_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_openai_user_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIUserMessage</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The converted <code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenAIUserMessage</span></code> object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>OpenAIUserMessage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camel.messages.BaseMessage.to_user_chat_message">
+<span class="sig-name descname"><span class="pre">to_user_chat_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#camel.messages.UserChatMessage" title="camel.messages.UserChatMessage"><span class="pre">UserChatMessage</span></a></span></span><a class="reference internal" href="_modules/camel/messages.html#BaseMessage.to_user_chat_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.BaseMessage.to_user_chat_message" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the message to a <a class="reference internal" href="#camel.messages.UserChatMessage" title="camel.messages.UserChatMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserChatMessage</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The converted <a class="reference internal" href="#camel.messages.UserChatMessage" title="camel.messages.UserChatMessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserChatMessage</span></code></a> object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#camel.messages.UserChatMessage" title="camel.messages.UserChatMessage">UserChatMessage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">ChatMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#ChatMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.ChatMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.BaseMessage" title="camel.messages.BaseMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMessage</span></code></a></p>
+<p>Base class for chat messages used in CAMEL chat system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the user or assistant role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, either
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.ASSISTANT</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.USER</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.ChatMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.ChatMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.ChatMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.ChatMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.ChatMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><a class="headerlink" href="#camel.messages.ChatMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">SystemMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'system'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#SystemMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.SystemMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.BaseMessage" title="camel.messages.BaseMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMessage</span></code></a></p>
+<p>Class for system messages used in CAMEL chat system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the user or assistant role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, either
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.ASSISTANT</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.USER</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code>)</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.SystemMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.SystemMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'system'</span></em><a class="headerlink" href="#camel.messages.SystemMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.SystemMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.SystemMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><a class="headerlink" href="#camel.messages.SystemMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">UserChatMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RoleType.USER</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#UserChatMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.UserChatMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.ChatMessage" title="camel.messages.ChatMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatMessage</span></code></a></p>
+<p>Class for chat messages from the user role used in CAMEL chat system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the user role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, always <code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.USER</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;user&quot;</span></code>)</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.UserChatMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.UserChatMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#camel.messages.UserChatMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.UserChatMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserChatMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#camel.messages.UserChatMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.messages.</span></span><span class="sig-name descname"><span class="pre">UserSystemMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">RoleType.USER</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'system'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/messages.html#UserSystemMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.messages.UserSystemMessage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#camel.messages.SystemMessage" title="camel.messages.SystemMessage"><code class="xref py py-class docutils literal notranslate"><span class="pre">SystemMessage</span></code></a></p>
+<p>Class for system messages from the user used in the CAMEL chat system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role_name</strong> (<em>str</em>) – The name of the user role.</p></li>
+<li><p><strong>role_type</strong> (<a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><em>RoleType</em></a>) – The type of role, always <code class="xref py py-obj docutils literal notranslate"><span class="pre">RoleType.USER</span></code>.</p></li>
+<li><p><strong>meta_dict</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Additional metadata dictionary
+for the message.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the message in OpenAI chat system.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code>)</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – The content of the message. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage.content">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#camel.messages.UserSystemMessage.content" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage.meta_dict">
+<span class="sig-name descname"><span class="pre">meta_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#camel.messages.UserSystemMessage.meta_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'system'</span></em><a class="headerlink" href="#camel.messages.UserSystemMessage.role" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage.role_name">
+<span class="sig-name descname"><span class="pre">role_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#camel.messages.UserSystemMessage.role_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.messages.UserSystemMessage.role_type">
+<span class="sig-name descname"><span class="pre">role_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#camel.typing.RoleType" title="camel.typing.RoleType"><span class="pre">RoleType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#camel.messages.UserSystemMessage.role_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.typing">
+<span id="camel-typing-module"></span><h2>camel.typing module<a class="headerlink" href="#module-camel.typing" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.typing.ModelType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.typing.</span></span><span class="sig-name descname"><span class="pre">ModelType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/typing.html#ModelType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.typing.ModelType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.ModelType.GPT_3_5_TURBO">
+<span class="sig-name descname"><span class="pre">GPT_3_5_TURBO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gpt-3.5-turbo'</span></em><a class="headerlink" href="#camel.typing.ModelType.GPT_3_5_TURBO" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.ModelType.GPT_4">
+<span class="sig-name descname"><span class="pre">GPT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gpt-4'</span></em><a class="headerlink" href="#camel.typing.ModelType.GPT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.ModelType.GPT_4_32k">
+<span class="sig-name descname"><span class="pre">GPT_4_32k</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'gpt-4-32k'</span></em><a class="headerlink" href="#camel.typing.ModelType.GPT_4_32k" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.typing.RoleType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.typing.</span></span><span class="sig-name descname"><span class="pre">RoleType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/typing.html#RoleType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.typing.RoleType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.RoleType.ASSISTANT">
+<span class="sig-name descname"><span class="pre">ASSISTANT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'assistant'</span></em><a class="headerlink" href="#camel.typing.RoleType.ASSISTANT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.RoleType.CRITIC">
+<span class="sig-name descname"><span class="pre">CRITIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'critic'</span></em><a class="headerlink" href="#camel.typing.RoleType.CRITIC" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.RoleType.DEFAULT">
+<span class="sig-name descname"><span class="pre">DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#camel.typing.RoleType.DEFAULT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.RoleType.USER">
+<span class="sig-name descname"><span class="pre">USER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#camel.typing.RoleType.USER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="camel.typing.TaskType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camel.typing.</span></span><span class="sig-name descname"><span class="pre">TaskType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/typing.html#TaskType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.typing.TaskType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.AI_SOCIETY">
+<span class="sig-name descname"><span class="pre">AI_SOCIETY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ai_society'</span></em><a class="headerlink" href="#camel.typing.TaskType.AI_SOCIETY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.CODE">
+<span class="sig-name descname"><span class="pre">CODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'code'</span></em><a class="headerlink" href="#camel.typing.TaskType.CODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.DEFAULT">
+<span class="sig-name descname"><span class="pre">DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#camel.typing.TaskType.DEFAULT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.EVALUATION">
+<span class="sig-name descname"><span class="pre">EVALUATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'evaluation'</span></em><a class="headerlink" href="#camel.typing.TaskType.EVALUATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.MISALIGNMENT">
+<span class="sig-name descname"><span class="pre">MISALIGNMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'misalignment'</span></em><a class="headerlink" href="#camel.typing.TaskType.MISALIGNMENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.SOLUTION_EXTRACTION">
+<span class="sig-name descname"><span class="pre">SOLUTION_EXTRACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'solution_extraction'</span></em><a class="headerlink" href="#camel.typing.TaskType.SOLUTION_EXTRACTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camel.typing.TaskType.TRANSLATION">
+<span class="sig-name descname"><span class="pre">TRANSLATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'translation'</span></em><a class="headerlink" href="#camel.typing.TaskType.TRANSLATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camel.utils">
+<span id="camel-utils-module"></span><h2>camel.utils module<a class="headerlink" href="#module-camel.utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.count_tokens_openai_chat_models">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">count_tokens_openai_chat_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/camel/utils.html#count_tokens_openai_chat_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.count_tokens_openai_chat_models" title="Permalink to this definition"></a></dt>
+<dd><p>Counts the number of tokens required to generate an OpenAI chat based
+on a given list of messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>messages</strong> (<em>List</em><em>[</em><em>OpenAIMessage</em><em>]</em>) – The list of messages.</p></li>
+<li><p><strong>encoding</strong> (<em>Any</em>) – The encoding method to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of tokens required.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.get_first_int">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">get_first_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/camel/utils.html#get_first_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.get_first_int" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the first integer number found in the given string.</p>
+<p>If no integer number is found, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The input string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The first integer number found in the string, or None if</dt><dd><p>no integer number is found.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.get_model_token_limit">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">get_model_token_limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.ModelType" title="camel.typing.ModelType"><span class="pre">ModelType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/camel/utils.html#get_model_token_limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.get_model_token_limit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the maximum token limit for a given model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="#camel.typing.ModelType" title="camel.typing.ModelType"><em>ModelType</em></a>) – The type of the model.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The maximum token limit for the given model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.get_prompt_template_key_words">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">get_prompt_template_key_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/utils.html#get_prompt_template_key_words"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.get_prompt_template_key_words" title="Permalink to this definition"></a></dt>
+<dd><p>Given a string template containing curly braces {}, return a set of
+the words inside the braces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>template</strong> (<em>str</em>) – A string containing curly braces.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of the words inside the curly braces.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_prompt_template_key_words</span><span class="p">(</span><span class="s1">&#39;Hi, </span><span class="si">{name}</span><span class="s1">! How are you </span><span class="si">{status}</span><span class="s1">?&#39;</span><span class="p">)</span>
+<span class="go">{&#39;name&#39;, &#39;status&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.num_tokens_from_messages">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">num_tokens_from_messages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#camel.typing.ModelType" title="camel.typing.ModelType"><span class="pre">ModelType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/camel/utils.html#num_tokens_from_messages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.num_tokens_from_messages" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the number of tokens used by a list of messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>messages</strong> (<em>List</em><em>[</em><em>OpenAIMessage</em><em>]</em>) – The list of messages to count the
+number of tokens for.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#camel.typing.ModelType" title="camel.typing.ModelType"><em>ModelType</em></a>) – The OpenAI model used to encode the messages.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of tokens used by the messages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – If the specified <cite>model</cite> is not implemented.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/openai/openai-python/blob/main/chatml.md">https://github.com/openai/openai-python/blob/main/chatml.md</a></p></li>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/models/gpt-4">https://platform.openai.com/docs/models/gpt-4</a></p></li>
+<li><p><a class="reference external" href="https://platform.openai.com/docs/models/gpt-3-5">https://platform.openai.com/docs/models/gpt-3-5</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.openai_api_key_required">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">openai_api_key_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/camel/utils.html#openai_api_key_required"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.openai_api_key_required" title="Permalink to this definition"></a></dt>
+<dd><p>Decorator that checks if the OpenAI API key is available in the
+environment variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>callable</em>) – The function to be wrapped.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The decorated function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the OpenAI API key is not found in the environment
+    variables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camel.utils.print_text_animated">
+<span class="sig-prename descclassname"><span class="pre">camel.utils.</span></span><span class="sig-name descname"><span class="pre">print_text_animated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camel/utils.html#print_text_animated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camel.utils.print_text_animated" title="Permalink to this definition"></a></dt>
+<dd><p>Prints the given text with an animated effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – The text to print.</p></li>
+<li><p><strong>delay</strong> (<em>float</em><em>, </em><em>optional</em>) – The delay between each character printed.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">0.02</span></code>)</p></li>
+<li><p><strong>end</strong> (<em>str</em><em>, </em><em>optional</em>) – The end character to print after the text.
+(default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-camel">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-camel" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="camel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="camel.agents.html" class="btn btn-neutral float-right" title="camel.agents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Camel AI team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

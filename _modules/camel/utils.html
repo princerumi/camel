@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>camel.utils &mdash; Camel 00.00.01 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Camel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">camel</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Camel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">camel.utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for camel.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">import</span> <span class="nn">tiktoken</span>
+
+<span class="kn">from</span> <span class="nn">camel.messages</span> <span class="kn">import</span> <span class="n">OpenAIMessage</span>
+<span class="kn">from</span> <span class="nn">camel.typing</span> <span class="kn">import</span> <span class="n">ModelType</span>
+
+
+<div class="viewcode-block" id="count_tokens_openai_chat_models"><a class="viewcode-back" href="../../camel.html#camel.utils.count_tokens_openai_chat_models">[docs]</a><span class="k">def</span> <span class="nf">count_tokens_openai_chat_models</span><span class="p">(</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">],</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Counts the number of tokens required to generate an OpenAI chat based</span>
+<span class="sd">    on a given list of messages.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        messages (List[OpenAIMessage]): The list of messages.</span>
+<span class="sd">        encoding (Any): The encoding method to use.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The number of tokens required.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_tokens</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="c1"># message follows &lt;im_start&gt;{role/name}\n{content}&lt;im_end&gt;\n</span>
+        <span class="n">num_tokens</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">num_tokens</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>  <span class="c1"># if there&#39;s a name, the role is omitted</span>
+                <span class="n">num_tokens</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># role is always 1 token</span>
+    <span class="n">num_tokens</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># every reply is primed with &lt;im_start&gt;assistant</span>
+    <span class="k">return</span> <span class="n">num_tokens</span></div>
+
+
+<div class="viewcode-block" id="num_tokens_from_messages"><a class="viewcode-back" href="../../camel.html#camel.utils.num_tokens_from_messages">[docs]</a><span class="k">def</span> <span class="nf">num_tokens_from_messages</span><span class="p">(</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OpenAIMessage</span><span class="p">],</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the number of tokens used by a list of messages.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        messages (List[OpenAIMessage]): The list of messages to count the</span>
+<span class="sd">            number of tokens for.</span>
+<span class="sd">        model (ModelType): The OpenAI model used to encode the messages.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The total number of tokens used by the messages.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NotImplementedError: If the specified `model` is not implemented.</span>
+
+<span class="sd">    References:</span>
+<span class="sd">        - https://github.com/openai/openai-python/blob/main/chatml.md</span>
+<span class="sd">        - https://platform.openai.com/docs/models/gpt-4</span>
+<span class="sd">        - https://platform.openai.com/docs/models/gpt-3-5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="s2">&quot;cl100k_base&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">count_tokens_openai_chat_models</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">count_tokens_openai_chat_models</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4_32k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">count_tokens_openai_chat_models</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;`num_tokens_from_messages`` is not presently implemented &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;for model </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;See https://github.com/openai/openai-python/blob/main/chatml.md &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;for information on how messages are converted to tokens. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;See https://platform.openai.com/docs/models/gpt-4&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;or https://platform.openai.com/docs/models/gpt-3-5&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;for information about openai chat models.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_model_token_limit"><a class="viewcode-back" href="../../camel.html#camel.utils.get_model_token_limit">[docs]</a><span class="k">def</span> <span class="nf">get_model_token_limit</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the maximum token limit for a given model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (ModelType): The type of the model.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The maximum token limit for the given model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">4096</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">8192</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_4_32k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">32768</span></div>
+
+
+<div class="viewcode-block" id="openai_api_key_required"><a class="viewcode-back" href="../../camel.html#camel.utils.openai_api_key_required">[docs]</a><span class="k">def</span> <span class="nf">openai_api_key_required</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Decorator that checks if the OpenAI API key is available in the</span>
+<span class="sd">    environment variables.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        func (callable): The function to be wrapped.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        callable: The decorated function.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the OpenAI API key is not found in the environment</span>
+<span class="sd">            variables.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s1">&#39;OPENAI_API_KEY&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;OpenAI API key not found.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="print_text_animated"><a class="viewcode-back" href="../../camel.html#camel.utils.print_text_animated">[docs]</a><span class="k">def</span> <span class="nf">print_text_animated</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Prints the given text with an animated effect.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text to print.</span>
+<span class="sd">        delay (float, optional): The delay between each character printed.</span>
+<span class="sd">            (default: :obj:`0.02`)</span>
+<span class="sd">        end (str, optional): The end character to print after the text.</span>
+<span class="sd">            (default: :obj:`&quot;&quot;`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_prompt_template_key_words"><a class="viewcode-back" href="../../camel.html#camel.utils.get_prompt_template_key_words">[docs]</a><span class="k">def</span> <span class="nf">get_prompt_template_key_words</span><span class="p">(</span><span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Given a string template containing curly braces {}, return a set of</span>
+<span class="sd">    the words inside the braces.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        template (str): A string containing curly braces.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[str]: A list of the words inside the curly braces.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_prompt_template_key_words(&#39;Hi, {name}! How are you {status}?&#39;)</span>
+<span class="sd">        {&#39;name&#39;, &#39;status&#39;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;{([^}]*)}&#39;</span><span class="p">,</span> <span class="n">template</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_first_int"><a class="viewcode-back" href="../../camel.html#camel.utils.get_first_int">[docs]</a><span class="k">def</span> <span class="nf">get_first_int</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the first integer number found in the given string.</span>
+
+<span class="sd">    If no integer number is found, returns None.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        string (str): The input string.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int or None: The first integer number found in the string, or None if</span>
+<span class="sd">            no integer number is found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Camel AI team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

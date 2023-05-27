@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>camel.configs &mdash; Camel 00.00.01 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Camel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">camel</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Camel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">camel.configs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for camel.configs</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+
+
+<div class="viewcode-block" id="ChatGPTConfig"><a class="viewcode-back" href="../../camel.html#camel.configs.ChatGPTConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ChatGPTConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Defines the parameters for generating chat completions using the</span>
+<span class="sd">    OpenAI API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        temperature (float, optional): Sampling temperature to use, between</span>
+<span class="sd">            :obj:`0` and :obj:`2`. Higher values make the output more random,</span>
+<span class="sd">            while lower values make it more focused and deterministic.</span>
+<span class="sd">            (default: :obj:`0.2`)</span>
+<span class="sd">        top_p (float, optional): An alternative to sampling with temperature,</span>
+<span class="sd">            called nucleus sampling, where the model considers the results of</span>
+<span class="sd">            the tokens with top_p probability mass. So :obj:`0.1` means only</span>
+<span class="sd">            the tokens comprising the top 10% probability mass are considered.</span>
+<span class="sd">            (default: :obj:`1.0`)</span>
+<span class="sd">        n (int, optional): How many chat completion choices to generate for</span>
+<span class="sd">            each input message. ()default: :obj:`1`)</span>
+<span class="sd">        stream (bool, optional): If True, partial message deltas will be sent</span>
+<span class="sd">            as data-only server-sent events as they become available.</span>
+<span class="sd">            (default: :obj:`False`)</span>
+<span class="sd">        stop (str or list, optional): Up to :obj:`4` sequences where the API</span>
+<span class="sd">            will stop generating further tokens. (default: :obj:`None`)</span>
+<span class="sd">        max_tokens (int, optional): The maximum number of tokens to generate</span>
+<span class="sd">            in the chat completion. The total length of input tokens and</span>
+<span class="sd">            generated tokens is limited by the model&#39;s context length.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+<span class="sd">        presence_penalty (float, optional): Number between :obj:`-2.0` and</span>
+<span class="sd">            :obj:`2.0`. Positive values penalize new tokens based on whether</span>
+<span class="sd">            they appear in the text so far, increasing the model&#39;s likelihood</span>
+<span class="sd">            to talk about new topics. See more information about frequency and</span>
+<span class="sd">            presence penalties. (default: :obj:`0.0`)</span>
+<span class="sd">        frequency_penalty (float, optional): Number between :obj:`-2.0` and</span>
+<span class="sd">            :obj:`2.0`. Positive values penalize new tokens based on their</span>
+<span class="sd">            existing frequency in the text so far, decreasing the model&#39;s</span>
+<span class="sd">            likelihood to repeat the same line verbatim. See more information</span>
+<span class="sd">            about frequency and presence penalties. (default: :obj:`0.0`)</span>
+<span class="sd">        logit_bias (dict, optional): Modify the likelihood of specified tokens</span>
+<span class="sd">            appearing in the completion. Accepts a json object that maps tokens</span>
+<span class="sd">            (specified by their token ID in the tokenizer) to an associated</span>
+<span class="sd">            bias value from :obj:`-100` to :obj:`100`. Mathematically, the bias</span>
+<span class="sd">            is added to the logits generated by the model prior to sampling.</span>
+<span class="sd">            The exact effect will vary per model, but values between:obj:` -1`</span>
+<span class="sd">            and :obj:`1` should decrease or increase likelihood of selection;</span>
+<span class="sd">            values like :obj:`-100` or :obj:`100` should result in a ban or</span>
+<span class="sd">            exclusive selection of the relevant token. (default: :obj:`{}`)</span>
+<span class="sd">        user (str, optional): A unique identifier representing your end-user,</span>
+<span class="sd">            which can help OpenAI to monitor and detect abuse.</span>
+<span class="sd">            (default: :obj:`&quot;&quot;`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>  <span class="c1"># openai default: 1.0</span>
+    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">presence_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">frequency_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">logit_bias</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Camel AI team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>camel.agents.task_agent &mdash; Camel 00.00.01 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Camel
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">camel</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Camel</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">camel.agents.task_agent</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for camel.agents.task_agent</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">camel.agents</span> <span class="kn">import</span> <span class="n">ChatAgent</span>
+<span class="kn">from</span> <span class="nn">camel.configs</span> <span class="kn">import</span> <span class="n">ChatGPTConfig</span>
+<span class="kn">from</span> <span class="nn">camel.messages</span> <span class="kn">import</span> <span class="n">SystemMessage</span><span class="p">,</span> <span class="n">UserChatMessage</span>
+<span class="kn">from</span> <span class="nn">camel.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplateGenerator</span><span class="p">,</span> <span class="n">TextPrompt</span>
+<span class="kn">from</span> <span class="nn">camel.typing</span> <span class="kn">import</span> <span class="n">ModelType</span><span class="p">,</span> <span class="n">RoleType</span><span class="p">,</span> <span class="n">TaskType</span>
+
+
+<div class="viewcode-block" id="TaskSpecifyAgent"><a class="viewcode-back" href="../../../camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent">[docs]</a><span class="k">class</span> <span class="nc">TaskSpecifyAgent</span><span class="p">(</span><span class="n">ChatAgent</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;An agent that Specifies a given task prompt by prompting the user to</span>
+<span class="sd">    provide more details.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        DEFAULT_WORD_LIMIT (int): The default word limit for the task prompt.</span>
+<span class="sd">        task_specify_prompt (TextPrompt): The prompt for specifying the task.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (ModelType): The type of model to use for the agent.</span>
+<span class="sd">            (default: :obj:`ModelType.GPT_3_5_TURBO`)</span>
+<span class="sd">        task_type (TaskType): The type of task for which to generate a prompt.</span>
+<span class="sd">            (default: :obj:`TaskType.AI_SOCIETY`)</span>
+<span class="sd">        model_config (Any): The configuration for the model.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+<span class="sd">        task_specify_prompt (Optional[TextPrompt]): The prompt for specifying</span>
+<span class="sd">            the task. (default: :obj:`None`)</span>
+<span class="sd">        word_limit (int): The word limit for the task prompt.</span>
+<span class="sd">            (default: :obj:`50`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DEFAULT_WORD_LIMIT</span> <span class="o">=</span> <span class="mi">50</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span> <span class="o">=</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="n">TaskType</span> <span class="o">=</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">AI_SOCIETY</span><span class="p">,</span>
+        <span class="n">model_config</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_specify_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">word_limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_WORD_LIMIT</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">task_specify_prompt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">task_specify_prompt_template</span> <span class="o">=</span> <span class="n">PromptTemplateGenerator</span><span class="p">(</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">get_task_specify_prompt</span><span class="p">(</span><span class="n">task_type</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span> <span class="o">=</span> <span class="n">task_specify_prompt_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">word_limit</span><span class="o">=</span><span class="n">word_limit</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span> <span class="o">=</span> <span class="n">task_specify_prompt</span>
+
+        <span class="n">model_config</span> <span class="o">=</span> <span class="n">model_config</span> <span class="ow">or</span> <span class="n">ChatGPTConfig</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+        <span class="n">system_message</span> <span class="o">=</span> <span class="n">SystemMessage</span><span class="p">(</span>
+            <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Task Specifier&quot;</span><span class="p">,</span>
+            <span class="n">role_type</span><span class="o">=</span><span class="n">RoleType</span><span class="o">.</span><span class="n">ASSISTANT</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You can make a task more specific.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">system_message</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_config</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TaskSpecifyAgent.step"><a class="viewcode-back" href="../../../camel.agents.html#camel.agents.task_agent.TaskSpecifyAgent.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">original_task_prompt</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">],</span>
+        <span class="n">meta_dict</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TextPrompt</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Specify the given task prompt by providing more details.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            original_task_prompt (Union[str, TextPrompt]): The original task</span>
+<span class="sd">                prompt.</span>
+<span class="sd">            meta_dict (Optional[Dict[str, Any]]): A dictionary containing</span>
+<span class="sd">                additional information to include in the prompt.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            TextPrompt: The specified task prompt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">task</span><span class="o">=</span><span class="n">original_task_prompt</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">meta_dict</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="o">**</span><span class="n">meta_dict</span><span class="p">))</span>
+
+        <span class="n">task_msg</span> <span class="o">=</span> <span class="n">UserChatMessage</span><span class="p">(</span><span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Task Specifier&quot;</span><span class="p">,</span>
+                                   <span class="n">content</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_specify_prompt</span><span class="p">)</span>
+        <span class="n">specified_task_msgs</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">task_msg</span><span class="p">)</span>
+        <span class="n">specified_task_msg</span> <span class="o">=</span> <span class="n">specified_task_msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">terminated</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Task specification failed.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="n">specified_task_msg</span><span class="o">.</span><span class="n">content</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TaskPlannerAgent"><a class="viewcode-back" href="../../../camel.agents.html#camel.agents.task_agent.TaskPlannerAgent">[docs]</a><span class="k">class</span> <span class="nc">TaskPlannerAgent</span><span class="p">(</span><span class="n">ChatAgent</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;An agent that helps divide a task into subtasks based on the input</span>
+<span class="sd">    task prompt.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        task_planner_prompt (TextPrompt): A prompt for the agent to divide</span>
+<span class="sd">            the task into subtasks.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (ModelType): The type of model to use for the agent.</span>
+<span class="sd">            (default: :obj:`ModelType.GPT_3_5_TURBO`)</span>
+<span class="sd">        model_config (Any): The configuration for the model.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">ModelType</span> <span class="o">=</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">GPT_3_5_TURBO</span><span class="p">,</span>
+        <span class="n">model_config</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_planner_prompt</span> <span class="o">=</span> <span class="n">TextPrompt</span><span class="p">(</span>
+            <span class="s2">&quot;Divide this task into subtasks: </span><span class="si">{task}</span><span class="s2">. Be concise.&quot;</span><span class="p">)</span>
+
+        <span class="n">system_message</span> <span class="o">=</span> <span class="n">SystemMessage</span><span class="p">(</span>
+            <span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Task Planner&quot;</span><span class="p">,</span>
+            <span class="n">role_type</span><span class="o">=</span><span class="n">RoleType</span><span class="o">.</span><span class="n">ASSISTANT</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;You are a helpful task planner.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">system_message</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_config</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TaskPlannerAgent.step"><a class="viewcode-back" href="../../../camel.agents.html#camel.agents.task_agent.TaskPlannerAgent.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">task_prompt</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextPrompt</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TextPrompt</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Generate subtasks based on the input task prompt.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_prompt (Union[str, TextPrompt]): The prompt for the task to</span>
+<span class="sd">                be divided into subtasks.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            TextPrompt: A prompt for the subtasks generated by the agent.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Maybe include roles information.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_planner_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_planner_prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">task</span><span class="o">=</span><span class="n">task_prompt</span><span class="p">)</span>
+
+        <span class="n">task_msg</span> <span class="o">=</span> <span class="n">UserChatMessage</span><span class="p">(</span><span class="n">role_name</span><span class="o">=</span><span class="s2">&quot;Task Planner&quot;</span><span class="p">,</span>
+                                   <span class="n">content</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">task_planner_prompt</span><span class="p">)</span>
+        <span class="n">sub_tasks_msgs</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">task_msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sub_tasks_msgs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Got None Subtasks messages.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">terminated</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Task planning failed.&quot;</span><span class="p">)</span>
+
+        <span class="n">sub_tasks_msg</span> <span class="o">=</span> <span class="n">sub_tasks_msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">TextPrompt</span><span class="p">(</span><span class="n">sub_tasks_msg</span><span class="o">.</span><span class="n">content</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Camel AI team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
